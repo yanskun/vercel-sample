@@ -19,8 +19,6 @@ export default function Home() {
             Hello, world!
           </li>
           <li>{process.env.NODE_ENV}</li>
-          <li>FQDN: <code>{process.env.ACCESS_RESTRICTION_FQDN_LIST?.split(',').map((fqdn) => fqdn.trim())}</code></li>
-          <li>IP: <code>{process.env.IP_ALLOW_LIST?.split(',').map((ip) => ip.trim())}</code></li>
         </ol>
 
         <div className={styles.ctas}>
