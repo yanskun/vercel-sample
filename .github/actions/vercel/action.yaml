@@ -26,7 +26,7 @@ runs:
       shell: bash
       id: deploy
       run: |
-          npx vercel deploy --prebuilt --token=${{ input.token }} > deploy.log
+          npx vercel deploy --prebuilt --token=${{ inputs.token }} > deploy.log
           URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
           echo "deploymentUrl=$URL" >> $GITHUB_OUTPUT
 
