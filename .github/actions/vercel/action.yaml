@@ -36,7 +36,7 @@ runs:
       uses: actions/github-script@v6
       id: comment-deployment-url-script
       env:
-        DEPLOYMENT_URL: ${{ needs.preview.outputs.deploymentUrl }}
+        DEPLOYMENT_URL: ${{ env.deploymentUrl }}
       with:
         script: |
           // Get pull requests that are open for current ref.
