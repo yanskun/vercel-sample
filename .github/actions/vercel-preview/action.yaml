@@ -1,15 +1,13 @@
-name: Deploy Vercel
-description: Deploy to Vercel
+name: Preview Deploy Vercel
+description: Deploy to Vercel Preview
 
 inputs:
   token:
-    description: 'The Vercel token'
+    description: The Vercel token
     required: true
-
-outputs:
-  deploymentUrl:
-    description: Vercel
-    value: ${{ steps.deploy.outputs.deploymentUrl }}
+  target:
+    description: development | production
+    required: true
 
 runs:
   using: 'composite'
@@ -19,18 +17,12 @@ runs:
       shell: bash
       run: npx vercel pull --yes --environment=preview --token=${{ inputs.token }}
 
-    - name: Debug
-      shell: bash
-      run: |
-        echo github.event_name ${{ github.event_name }}
-        echo github.event.action ${{ github.event.action }}
-
     - name: Build Project Artifacts
       shell: bash
       run: npx vercel build --token=${{ inputs.token }}
 
     - name: Deploy Project Artifacts to Vercel & PR Comment
-      if: ${{ github.event_name == 'pull_request' }}
+      if: ${{ inputs.token == 'preview' }}
       shell: bash
       id: deploy
       env:
@@ -39,3 +31,12 @@ runs:
         npx vercel deploy --prebuilt --token=${{ inputs.token }} > deploy.log
         URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
         gh pr comment ${{ github.event.pull_request.number }} -b "Deployed at $URL"
+
+    - name: Deploy Project Artifacts to Vercel
+      if: ${{ inputs.token == 'development' }}
+      shell: bash
+      id: deploy
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        npx vercel deploy --prebuilt --token=${{ inputs.token }} > deploy.log
