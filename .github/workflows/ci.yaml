@@ -27,38 +27,17 @@ jobs:
         with:
           working-directory: frontend
 
-      # - name: Install Vercel CLI
-      #   run: pnpm add -g vercel@33.2.0
+      - name: Deploy Vercel
+        uses: ./.github/actions/vercel
+        with:
+          token: ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Pull Vercel Environment Information
-        run: npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Debug
-        run: |
-          pwd
-          ls -la
-          pnpm version
-          pnpm --version
-          echo $PATH
-          which pnpm
-          type pnpm
-
-      - name: "Install pnpm"
-        run: "sudo npm install -g pnpm"
-
-      - name: store-dir
-        run: pnpm config set store-dir ~/pnpm
-
-      - name: Build Project Artifacts
-        shell: bash
-        run: npx vercel build --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy Project Artifacts to Vercel
-        id: deploy
-        run: |
-          npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > deploy.log
-          URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
-          echo "deploymentUrl=$URL" >> $GITHUB_OUTPUT
+      # - name: Deploy Project Artifacts to Vercel
+      #   id: deploy
+      #   run: |
+      #     npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > deploy.log
+      #     URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
+      #     echo "deploymentUrl=$URL" >> $GITHUB_OUTPUT
 
   # ref: https://github.com/vercel/vercel/discussions/9065#discussioncomment-7384786
   comment:
