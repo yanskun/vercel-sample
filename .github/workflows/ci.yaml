@@ -50,6 +50,7 @@ jobs:
         run: pnpm config set store-dir ~/pnpm
 
       - name: Build Project Artifacts
+        shell: bash
         run: npx vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
