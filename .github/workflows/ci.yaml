@@ -19,7 +19,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: .tool-versions
+          node-version-file: frontend/.tool-versions
+          cache-dependency-path: frontend/pnpm-lock.yaml
 
       - name: Install Vercel CLI
         shell: bash
