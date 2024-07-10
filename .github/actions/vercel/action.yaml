@@ -33,14 +33,6 @@ runs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-          npx vercel deploy --prebuilt --token=${{ inputs.token }} > deploy.log
-          URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
-          gh pr comment ${{ github.event.pull_request.number }} -b "Deployed at $URL"
-          # echo "deploymentUrl=$URL" >> $GITHUB_OUTPUT
-
-    # - name: Show Deployment URL
-    #   shell: bash
-    #   if: github.ref != 'refs/heads/main'
-    #   env:
-    #     GH_TOKEN: ${{ github.token }}
-    #   run: gh pr comment ${{ github.event.pull_request.number }} -b "Deployed at ${{ env.deploymentUrl }}"
+        npx vercel deploy --prebuilt --token=${{ inputs.token }} > deploy.log
+        URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
+        gh pr comment ${{ github.event.pull_request.number }} -b "Deployed at $URL"
