@@ -15,9 +15,9 @@ runs:
   using: 'composite'
 
   steps:
-    - name: Install Vercel CLI
-      shell: bash
-      run: pnpm add -g vercel@33.2.0
+    # - name: Install Vercel CLI
+    #   shell: bash
+    #   run: pnpm add -g vercel@33.2.0
 
     - name: Pull Vercel Environment Information
       shell: bash
