@@ -16,7 +16,7 @@ export default function Home() {
         />
         <ol>
           <li>
-            こんばんわ <code>app/page.tsx</code>
+            こんばんわん <code>app/page.tsx</code>
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
