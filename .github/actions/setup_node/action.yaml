@@ -21,4 +21,4 @@ runs:
       id: pnpm-install
       with:
         package_json_file: ${{ inputs.working-directory }}/package.json
-        run_install: false
+        run_install: true
