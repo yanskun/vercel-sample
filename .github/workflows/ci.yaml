@@ -37,7 +37,7 @@ jobs:
         run: pwd && ls -la && pnpm version && pnpm --version
       
       - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel@33.2.0 build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
         id: deploy
