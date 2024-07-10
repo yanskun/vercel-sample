@@ -9,7 +9,7 @@ inputs:
 outputs:
   deploymentUrl:
     description: Vercel
-    value: ${{ steps.deploy.outputs.deploymentUrl
+    value: ${{ steps.deploy.outputs.deploymentUrl }}
 
 runs:
   using: 'composite'
