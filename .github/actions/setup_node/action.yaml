@@ -20,5 +20,5 @@ runs:
       uses: pnpm/action-setup@v4
       id: pnpm-install
       with:
-        version: 9
+        version: 9.0.6
         run_install: false
