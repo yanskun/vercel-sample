@@ -27,12 +27,12 @@ jobs:
         with:
           working-directory: frontend
 
-      - name: Install Vercel CLI
+      # - name: Install Vercel CLI
         # run: pnpm add -g vercel@33.2.0
-        run: yarn add --global vercel
+        # run: yarn add --global vercel
 
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
       # - name: Debug
       #   run: |
@@ -45,12 +45,12 @@ jobs:
       #     type pnpm
 
       - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
         id: deploy
         run: |
-          vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > deploy.log
+          npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > deploy.log
           URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
           echo "deploymentUrl=$URL" >> $GITHUB_OUTPUT
 
