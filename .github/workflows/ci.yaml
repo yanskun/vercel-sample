@@ -28,21 +28,20 @@ jobs:
           working-directory: frontend
 
       # - name: Install Vercel CLI
-        # run: pnpm add -g vercel@33.2.0
-        # run: yarn add --global vercel
+      #   run: pnpm add -g vercel@33.2.0
 
       - name: Pull Vercel Environment Information
         run: npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
-      # - name: Debug
-      #   run: |
-      #     pwd
-      #     ls -la
-      #     pnpm version
-      #     pnpm --version
-      #     echo $PATH
-      #     which pnpm
-      #     type pnpm
+      - name: Debug
+        run: |
+          pwd
+          ls -la
+          pnpm version
+          pnpm --version
+          echo $PATH
+          which pnpm
+          type pnpm
 
       - name: Build Project Artifacts
         run: npx vercel build --token=${{ secrets.VERCEL_TOKEN }}
