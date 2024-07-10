@@ -18,11 +18,7 @@ runs:
 
     - name: pnpm setup
       uses: pnpm/action-setup@v4
+      id: pnpm-install
       with:
         package_json_file: ${{ inputs.working-directory }}/package.json
         run_install: false
-
-    # - name: Install dependencies
-    #   shell: bash
-    #   run: pnpm install
-    #   working-directory: ${{ inputs.working-directory }}
