@@ -30,6 +30,8 @@ runs:
     - name: Deploy Project Artifacts to Vercel
       shell: bash
       id: deploy
+      env:
+        GH_TOKEN: ${{ github.token }}
       run: |
           npx vercel deploy --prebuilt --token=${{ inputs.token }} > deploy.log
           URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
