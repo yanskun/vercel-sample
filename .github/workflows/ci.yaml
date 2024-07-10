@@ -28,7 +28,8 @@ jobs:
           working-directory: frontend
 
       - name: Install Vercel CLI
-        run: pnpm add -g vercel@33.2.0
+        # run: pnpm add -g vercel@33.2.0
+        run: pnpm add --global vercel
 
       - name: Add pnpm to PATH
         run: echo "$PNPM_HOME" >> $GITHUB_PATH
