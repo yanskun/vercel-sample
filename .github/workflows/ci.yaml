@@ -44,7 +44,10 @@ jobs:
           type pnpm
 
       - name: "Install pnpm"
-        command: "sudo npm install -g pnpm"
+        run: "sudo npm install -g pnpm"
+
+      - name: store-dir
+        run: pnpm config set store-dir ~/pnpm
 
       - name: Build Project Artifacts
         run: npx vercel build --token=${{ secrets.VERCEL_TOKEN }}
