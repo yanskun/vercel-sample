@@ -23,6 +23,7 @@ runs:
       shell: bash
       run: |
         echo github.event_name ${{ github.event_name }}
+        echo github.event.action ${{ github.event.action }}
 
     - name: Build Project Artifacts
       shell: bash
