@@ -2,6 +2,7 @@ name: CI
 
 env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ORG_ID: yanskun
 
 on: push
 
