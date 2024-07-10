@@ -19,7 +19,6 @@ defaults:
 
 jobs:
   preview:
-    if: ${{ github.ref != 'refs/heads/main'}}
     runs-on: ubuntu-latest
     environment:
       name: preview
