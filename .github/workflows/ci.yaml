@@ -22,10 +22,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: ./.github/actions/setup_node
+      # - name: Setup Node
+      #   uses: ./.github/actions/setup_node
+      #   with:
+      #     working-directory: frontend
+          - name: Setup Node.js
+      - uses: actions/setup-node@v4
         with:
-          working-directory: frontend
+          node-version-file: ${{ inputs.working-directory }}/package.json
+
+      - name: pnpm setup
+        uses: pnpm/action-setup@v4
+        id: pnpm-install
+        with:
+          version: 9
+          run_install: false
+
 
       - name: Install Vercel CLI
         run: pnpm add -g vercel@33.2.0
