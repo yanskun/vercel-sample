@@ -19,6 +19,11 @@ runs:
       shell: bash
       run: npx vercel pull --yes --environment=preview --token=${{ inputs.token }}
 
+    - name: Debug
+      shell: bash
+      run: |
+        echo github.event_name ${{ github.event_name }}
+
     - name: Build Project Artifacts
       shell: bash
       run: npx vercel build --token=${{ inputs.token }}
