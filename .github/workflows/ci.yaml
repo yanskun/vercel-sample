@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: preview
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
