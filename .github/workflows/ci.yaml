@@ -4,7 +4,13 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
 
-on: push
+permissions:
+  pull-requests: write
+
+on:
+  workflow_dispatch:
+
+  push:
 
 defaults:
   run:
@@ -30,5 +36,3 @@ jobs:
         uses: ./.github/actions/vercel
         with:
           token: ${{ secrets.VERCEL_TOKEN }}
-          url: ${{ steps.deploy.outputs.url }}
-
