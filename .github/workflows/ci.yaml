@@ -21,11 +21,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: ./.github/actions/setup-node
         with:
-          node-version-file: .tool-versions
-          cache-dependency-path: pnpm-lock.yaml
+          working-directory: frontend
 
       - name: Install Vercel CLI
         run: pnpm add -g vercel@33.2.0
