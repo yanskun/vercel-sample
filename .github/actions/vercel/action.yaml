@@ -5,6 +5,8 @@ inputs:
   token:
     description: 'The Vercel token'
     required: true
+  url:
+    description: 'The URL to comment on the PR'
 
 runs:
   using: 'composite'
@@ -27,6 +29,11 @@ runs:
       id: deploy
       run: |
           npx vercel deploy --prebuilt --token=${{ inputs.token }} > deploy.log
+
+    - name: Print Deployment URL
+      if: inputs.url != ''
+      shell: bash
+      run: |
           URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
           echo "deploymentUrl=$URL" >> $GITHUB_OUTPUT
 
