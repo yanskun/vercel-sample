@@ -24,7 +24,6 @@ runs:
     - name: Deploy Project Artifacts to Vercel & PR Comment
       if: ${{ inputs.token == 'preview' }}
       shell: bash
-      id: deploy
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
@@ -35,7 +34,6 @@ runs:
     - name: Deploy Project Artifacts to Vercel
       if: ${{ inputs.token == 'development' }}
       shell: bash
-      id: deploy
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
