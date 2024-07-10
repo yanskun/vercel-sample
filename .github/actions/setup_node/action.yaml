@@ -10,11 +10,6 @@ runs:
   using: 'composite'
 
   steps:
-    - name: pnpm setup
-      uses: pnpm/action-setup@v4
-      with:
-        package_json_file: ${{ inputs.working-directory }}/package.json
-
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -22,7 +17,13 @@ runs:
         node-version-file: ${{ inputs.working-directory }}/package.json
         cache-dependency-path: ${{ inputs.working-directory }}/pnpm-lock.yaml
 
-    - name: Install dependencies
-      shell: bash
-      run: pnpm install
-      working-directory: ${{ inputs.working-directory }}
+    - name: pnpm setup
+      uses: pnpm/action-setup@v4
+      with:
+        package_json_file: ${{ inputs.working-directory }}/package.json
+        run_install: false
+
+    # - name: Install dependencies
+    #   shell: bash
+    #   run: pnpm install
+    #   working-directory: ${{ inputs.working-directory }}
