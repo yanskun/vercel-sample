@@ -20,5 +20,5 @@ runs:
       uses: pnpm/action-setup@v4
       id: pnpm-install
       with:
-        package_json_file: ${{ inputs.working-directory }}/package.json
+        version: 9
         run_install: false
