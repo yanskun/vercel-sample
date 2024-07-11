@@ -22,7 +22,7 @@ runs:
       run: npx vercel build --token=${{ inputs.token }}
 
     - name: Deploy Project Artifacts to Vercel & PR Comment
-      if: ${{ inputs.token == 'preview' }}
+      if: ${{ inputs.target == 'preview' }}
       shell: bash
       env:
         GH_TOKEN: ${{ github.token }}
@@ -32,7 +32,7 @@ runs:
         gh pr comment ${{ github.event.pull_request.number }} -b "Deployed at $URL"
 
     - name: Deploy Project Artifacts to Vercel
-      if: ${{ inputs.token == 'development' }}
+      if: ${{ inputs.target == 'development' }}
       shell: bash
       env:
         GH_TOKEN: ${{ github.token }}
