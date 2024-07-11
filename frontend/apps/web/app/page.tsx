@@ -16,7 +16,7 @@ export default function Home() {
         />
         <ol>
           <li>
-            Hello, world!
+            こんばんわん <code>app/page.tsx</code>
           </li>
           <li>{process.env.NODE_ENV}</li>
         </ol>

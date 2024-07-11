@@ -1,0 +1,23 @@
+name: Setup Node
+
+inputs:
+  working-directory:
+    description: 'The working directory to run the command in'
+    required: false
+    default: '.'
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: pnpm setup
+      uses: pnpm/action-setup@v4
+      id: pnpm-install
+      with:
+        package_json_file: ${{ inputs.working-directory }}/package.json
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: ${{ inputs.working-directory }}/package.json
+        cache-dependency-path: ${{ inputs.working-directory }}/pnpm-lock.yaml
