@@ -18,7 +18,7 @@ export default function Home() {
           <li>
             こんばんわん <code>app/page.tsx</code>
           </li>
-          <li>Save and see your changes instantly.</li>
+          <li>{process.env.NODE_ENV}</li>
         </ol>
 
         <div className={styles.ctas}>

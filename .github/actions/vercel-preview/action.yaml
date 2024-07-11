@@ -6,7 +6,7 @@ inputs:
     description: The Vercel token
     required: true
   target:
-    description: development | production
+    description: preview | development
     required: true
 
 runs:
