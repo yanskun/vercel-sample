@@ -23,4 +23,6 @@ runs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        npx vercel deploy --prebuilt --prod --token=${{ inputs.token }}
+        npx vercel deploy --prebuilt --prod --token=${{ inputs.token }} > deploy.log
+        URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
+        npx vercel alias --token=${{ inputs.token }} set "$URL" yanskun-vercel.vercel.app
