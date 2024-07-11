@@ -16,7 +16,7 @@ export default function Home() {
         />
         <ol>
           <li>
-            こんばんわん <code>app/page.tsx</code>
+            こんにちわんこ <code>app/page.tsx</code>
           </li>
           <li>{process.env.NODE_ENV}</li>
         </ol>
