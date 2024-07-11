@@ -34,22 +34,25 @@ jobs:
         with:
           working-directory: frontend
 
-      - name: Deploy Vercel(Preview)
-        if: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dvelopment' }}
-        uses: ./.github/actions/vercel-preview
-        with:
-          token: ${{ secrets.VERCEL_TOKEN }}
-          target: preview
+      - name: Debug
+        run: echo ${{ github.ref }}
 
-      - name: Deploy Vercel(Development)
-        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dvelopment' }}
-        uses: ./.github/actions/vercel-preview
-        with:
-          token: ${{ secrets.VERCEL_TOKEN }}
-          target: development
+      # - name: Deploy Vercel(Preview)
+      #   if: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dvelopment' }}
+      #   uses: ./.github/actions/vercel-preview
+      #   with:
+      #     token: ${{ secrets.VERCEL_TOKEN }}
+      #     target: preview
 
-      - name: Deploy Vercel(Production)
-        if: ${{ github.event_name == 'release' }}
-        uses: ./.github/actions/vercel-production
-        with:
-          token: ${{ secrets.VERCEL_TOKEN }}
+      # - name: Deploy Vercel(Development)
+      #   if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dvelopment' }}
+      #   uses: ./.github/actions/vercel-preview
+      #   with:
+      #     token: ${{ secrets.VERCEL_TOKEN }}
+      #     target: development
+
+      # - name: Deploy Vercel(Production)
+      #   if: ${{ github.event_name == 'release' }}
+      #   uses: ./.github/actions/vercel-production
+      #   with:
+      #     token: ${{ secrets.VERCEL_TOKEN }}
