@@ -38,7 +38,7 @@ runs:
       with:
         number: ${{ github.event.number }}
         GITHUB_TOKEN: ${{ github.token }}
-        message: '${{ inputs.tag }}: ${{ steps.preview_deploy.outputs.deployed_url }}"'
+        message: '${{ inputs.target }}: ${{ steps.preview_deploy.outputs.deployed_url }}'
 
     - name: Deploy Project Artifacts to Vercel
       if: ${{ inputs.target == 'development' }}
