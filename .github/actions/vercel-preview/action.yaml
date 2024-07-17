@@ -23,13 +23,21 @@ runs:
 
     - name: Deploy Project Artifacts to Vercel & PR Comment
       if: ${{ inputs.target == 'preview' }}
+      id: preview_deploy
       shell: bash
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
         npx vercel deploy --prebuilt --token=${{ inputs.token }} > deploy.log
         URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
-        gh pr comment ${{ github.event.pull_request.number }} -b "Deployed at $URL"
+        echo "deployed_url=$URL" >> $GITHUB_OUTPUT
+
+    - name: PR Comment Deployed URL
+      if: steps.preview_deploy.outputs.deployed_url != ''
+      uses: marocchino/sticky-pull-request-comment@v1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        message: '${{ inputs.tag }}: ${{ steps.preview_deploy.outputs.deployed_url }}"'
 
     - name: Deploy Project Artifacts to Vercel
       if: ${{ inputs.target == 'development' }}
