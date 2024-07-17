@@ -37,11 +37,15 @@ runs:
         URL=$(cat deploy.log | grep -o 'https://[^ ]*.vercel.app' | head -n1)
         echo "deployed_url=$URL" >> $GITHUB_OUTPUT
 
+    - uses: jwalton/gh-find-current-pr@v1
+      if: steps.preview_deploy.outputs.deployed_url != ''
+      id: finder
+
     - name: PR Comment Deployed URL
       if: steps.preview_deploy.outputs.deployed_url != ''
       uses: marocchino/sticky-pull-request-comment@v1
       with:
-        number: ${{ github.event.number }}
+        number: ${{ steps.finder.outputs.pr }}
         GITHUB_TOKEN: ${{ github.token }}
         message: '${{ inputs.target }}: ${{ steps.preview_deploy.outputs.deployed_url }}'
 
