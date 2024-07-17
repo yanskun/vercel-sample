@@ -36,6 +36,7 @@ runs:
       if: steps.preview_deploy.outputs.deployed_url != ''
       uses: marocchino/sticky-pull-request-comment@v1
       with:
+        number: ${{ github.event.number }}
         GITHUB_TOKEN: ${{ github.token }}
         message: '${{ inputs.tag }}: ${{ steps.preview_deploy.outputs.deployed_url }}"'
 
