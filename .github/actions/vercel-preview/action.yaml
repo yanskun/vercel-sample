@@ -36,7 +36,7 @@ runs:
       if: steps.preview_deploy.outputs.deployed_url != ''
       uses: marocchino/sticky-pull-request-comment@v1
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
         message: '${{ inputs.tag }}: ${{ steps.preview_deploy.outputs.deployed_url }}"'
 
     - name: Deploy Project Artifacts to Vercel
